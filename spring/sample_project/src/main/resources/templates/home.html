@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+
+<HTML xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Home Page</title>
+</head>
+
+<body style="background-color: #c5d5cb; text-align:center;padding-top:200px">
+<h2>Home Page</h2>
+
+<p>
+    <a th:href = "@{/student/list}"> Go to Student List</a>
+
+</p>
+
+<p>
+    <a th:href = "@{/course/list}">Go to Course List</a>
+</p>
+
+
+</body>
+</HTML>

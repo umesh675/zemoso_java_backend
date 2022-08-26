@@ -1,0 +1,3 @@
+spring.annotation.BikeConfig=org.springframework.stereotype.Component
+spring.annotation.Car=org.springframework.stereotype.Component
+spring.annotation.VehicleConfig=org.springframework.stereotype.Component

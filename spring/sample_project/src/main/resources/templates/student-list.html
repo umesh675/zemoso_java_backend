@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+
+
+</head>
+<body>
+
+<div class = "container">
+
+    <h3>Student List</h3>
+    <hr>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href = "@{/student/showFormForAdd}"
+           class="btn btn-primary btn-sm mb-3">
+            Add Student
+        </a>
+    </div>
+
+    <div th:if="${students.empty}">
+        <p>
+        <h6>Course List is Empty add course</h6>
+        </p>
+    </div>
+
+    <div th:if="${students.empty}">
+        <table class = "table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+
+                <div sec:authorize="hasRole('ADMIN')">
+                    <th>Action</th>
+                </div>
+
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each = "student : ${students}">
+
+                <td th:text= "${student.firstName}"></td>
+                <td th:text = "${student.lastName}"></td>
+                <td th:text = "${student.email}"></td>
+
+                <div sec:authorize="hasRole('ADMIN')">
+                    <td>
+                        <a th:href="@{/student/showFormForUpdate(studentId=${student.id})}"
+                           class="btn btn-info btn-sm">Update</a>
+
+                        <a th:href="@{/student/delete(studentId=${student.id})}"
+                           class="btn btn-info btn-sm"
+                           onclick="if(!(confirm('Are you sure you wanna delete the student?'))) return false">
+                            Delete</a>
+
+                    </td>
+                </div>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<hr>
+<a th:href="@{/logout}"  class="btn btn-danger btn-sm"> LOGOUT</a>
+
+</body>
+
+</html>

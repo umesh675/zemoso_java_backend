@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+
+    <style>
+    .error {
+        color: red;
+    }
+    </style>
+
+</head>
+<body>
+
+<h3>Save Course</h3>
+<br><br>
+
+<form action="#" th:action="@{/course/save}"
+      th:Object="${course}" method="POST">
+
+    <!--    this is use for update-->
+    <input type="hidden" th:field="*{id}">
+
+    <div class="form-group">
+        <input type="text" th:field="*{courseCode}" id="courseCode"
+               class="form-control mb-4 col-4" placeholder="Course Code"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('courseCode')}"
+             th:errors="*{courseCode}"></div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" th:field="*{courseName}"  id="courseName"
+               class="form-control mb-4 col-4" placeholder="Course Name"/>
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('courseName')}"
+             th:errors="*{courseName}"></div>
+    </div>
+
+    <button type="submit" class="btn btn-info col-2">Save Course</button>
+
+</form>
+
+<hr>
+<a th:href="@{/course/list}">Back To The Course List</a>
+
+<hr>
+<h6>Description</h6>
+<p>
+    1.Course Code should be not repeated
+    <br>
+    2.Course Code must have size 5
+    <br>
+    3.Course Code start with CS
+    <br>
+    4.Course Name must be unique
+
+</p>
+
+</body>
+</html>

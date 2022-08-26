@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- load property file on spring config xml -->
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <!-- define dependency bean -->
+    <bean id = "myFortuneService"
+          class="dependency.injection.HappyFortuneService">
+
+    </bean>
+
+    <bean id="baseball coach"
+          class="dependency.injection.BaseballCoach">
+        <constructor-arg ref="myFortuneService"/>   <!-- setup constructor injection -->
+
+    </bean>
+
+    <bean id="cricket coach"
+          class="dependency.injection.CricketCoach">
+        <property name="fortuneServices" ref="myFortuneService"/> <!-- setup setter dependency respect this
+        setter method name will be setFortuneServices-->
+
+        <!-- injecting value -->
+        <property name="coachEmail" value="abc@gmail.com"/>
+        <property name="coachTeam" value="mumbai"/>
+
+
+    </bean>
+    <!-- this bean call first cricket coach default constructor then setter method at compile time if
+    there print statement then print that statement-->
+
+    <bean id="badminton coach"
+          class="dependency.injection.BadmintonCoach">
+
+        <property name="email" value="${foo.email}"/>
+        <property name="team" value="${foo.team}"/>
+
+    </bean>
+
+</beans>
